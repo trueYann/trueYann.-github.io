@@ -16,7 +16,7 @@
   <meta name="description" content="">
   <meta name="author" content="trueYann">
   <meta name="keywords" content="">
-  <title>友链 - trueYann</title>
+  <title>Hexo : 安装hexo-admin - trueYann</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/5.12.1/css/all.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
@@ -42,7 +42,7 @@
 
 
 <body>
-  <header style="height: 80vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -120,6 +120,40 @@
             </span>
 
             
+              
+                <p class="mt-3 post-meta">
+                  <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                  星期四, 三月 12日 2020, 5:02 下午
+                </p>
+              
+
+              <p class="mt-1">
+                
+                  
+                  <span class="post-meta">
+                    <i class="far fa-chart-bar"></i>
+                    499 字
+                  </span>
+                
+
+                
+                  
+                  <span class="post-meta">
+                      <i class="far fa-clock"></i>
+                      1 分钟
+                  </span>
+                
+
+                
+                  <!-- 不蒜子统计文章PV -->
+                  
+                  <span id="busuanzi_container_page_pv" class="post-meta" style="display: none">
+                    <i class="far fa-eye" aria-hidden="true"></i>
+                    <span id="busuanzi_value_page_pv"></span> 次
+                  </span>
+                
+              </p>
+            
           </div>
 
           
@@ -130,84 +164,116 @@
 
   <main>
     
-      <div class="container nopadding-md">
-        <div class="py-5 z-depth-3" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="container nopadding-md" id="board-ctn">
+        <div class="py-5 z-depth-3" id="board">
+          <div class="post-content mx-auto" id="post">
+            
+            <div class="markdown-body">
+              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>搭起了hexo博客，第一件事当然是要写几篇博文。hexo可以通过命令创建博文，然后找到对应的markdown文档，写入博文的内容然后发布。这样子多少都有点显得不方便。一来，需要登到服务器；二来，直接在服务器编辑markdown文档不够直观。有没有更方便的方式，比如有个后台，可以登录到后台直接编辑博文然后发布？hexo-admin插件就是这样的一个角色。</p>
+<hr>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li><p>安装hexo-admin</p>
+<pre><code>cd blog   ##blog目录为Hexo的要目录
+npm install --save hexo-admin
+hexo s</code></pre><p><em>注：若 ”npm command not found” 可参考 <a href="https://blog.csdn.net/czjlghndcy/article/details/80313409" target="_blank" rel="noopener">此处</a></em></p>
+</li>
+<li><p>获取password_hash</p>
+<pre><code>访问
+http://127.0.0.1:4000/admin</code></pre></li>
+</ul>
+<p><img src="/images/pasted-0.png" srcset="/img/loading.gif" alt="upload successful"></p>
+<p>进入后，选择”setting”菜单，按图勾选两个复选框，点击”Setup authentification here”</p>
+<p><img src="/images/pasted-1.png" srcset="/img/loading.gif" alt="upload successful"></p>
+<p>填写username,password,seret等信息，获得password_hash<br><img src="/images/pasted-2.png" srcset="/img/loading.gif" alt="upload successful"></p>
+<ul>
+<li><p>同步到github脚本<br/><br>在写完博文发布(deploy)的时候，同时希望推送到github。我们可以写一个脚本，让deploy之后执行脚本，推送到github:</p>
+<pre><code class="bash">$ cd blog
+$ mkdir admin_script
+$ touch admin_script/hexo-generate.sh</code></pre>
+<p>用atom或sublime编辑hexo-generate.sh脚本，写上以下内容:</p>
+<pre><code>#!/usr/bin/env sh
+hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code></pre></li>
+<li><p>配置hexo<br/><br>编辑hexo配置文档(_config.yml)，将步骤2所获得的信息添加到配置文档中。内容如下:</p>
+<pre><code>admin:
+  username: trueyann
+  password_hash: (步骤2所得）
+  secret: hello trueyann!
+  deployCommand: &#39;./admin_script/hexo-generate.sh&#39;</code></pre></li>
+<li><p>写博文<br/><br>访问 <a href="http://127.0.0.1:4000/admin" target="_blank" rel="noopener">http://127.0.0.1:4000/admin</a> ，用户名密码登录。然后在Posts菜单点击”New Posts”，创建一篇博文。</p>
+<p><img src="/images/pasted-3.png" srcset="/img/loading.gif" alt="upload successful"></p>
+<p>默认情况下，博文是以草稿(_drafts)的形式编写，如果编写完后要发布正文，将_drafts改为_posts即可。右上角设置按钮可以为博文添加分类和标签。如图:</p>
+</li>
+</ul>
+<p><img src="/images/pasted-4.png" srcset="/img/loading.gif" alt="upload successful"></p>
+<ul>
+<li>发布博文<br/><br>按照步骤5将_drafts改为_posts后，点右上角的勾。然后，选中”Deploy”菜单，直接点击”deploy”。<br><img src="/images/pasted-5.png" srcset="/img/loading.gif" alt="upload successful"></li>
+</ul>
+<hr>
+<p>&emsp;至此，一篇博文写好并发布了。同时，这篇博文也会同步到github上。</p>
+
+            </div>
+            <hr>
+            <div>
+              <p>
+                
+                  <span>
+                <i class="iconfont icon-inbox"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+                      &nbsp;
+                    
+                  </span>&nbsp;&nbsp;
+                
+                
+                  <span>
+                <i class="iconfont icon-tag"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0/">学习</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%B7%A5%E5%85%B7%E9%85%8D%E7%BD%AE/">工具配置</a>
+                    
+                  </span>
+                
+              </p>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <div class="comments" id="comments">
+                
                 
 
-<div class="row links">
-  
-    <div class="card link-card col-lg-4 col-md-6 col-sm-12">
-      <div class="card-body link-body">
-        <div class="link-container">
-          
-          
-          <a href="https://hexo.fluid-dev.com/docs/" target="_blank" rel="nofollow noopener">
-            <div class="row" style="flex-wrap: nowrap">
-              
-                <img class="link-avatar my-auto" src="/img/favicon.png" srcset="/img/loading.gif" alt="Fluid Docs" />
-              
-              <div class="link-text">
-                <div class="link-title">Fluid Docs</div>
-                <div class="link-intro">主题使用指南</div>
               </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  
-    <div class="card link-card col-lg-4 col-md-6 col-sm-12">
-      <div class="card-body link-body">
-        <div class="link-container">
-          
-          
-          <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-            <div class="row" style="flex-wrap: nowrap">
-              
-                <img class="link-avatar my-auto" src="/img/favicon.png" srcset="/img/loading.gif" alt="Fluid Repo" />
-              
-              <div class="link-text">
-                <div class="link-title">Fluid Repo</div>
-                <div class="link-intro">主题 GitHub 仓库</div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  
-    <div class="card link-card col-lg-4 col-md-6 col-sm-12">
-      <div class="card-body link-body">
-        <div class="link-container">
-          
-          
-          <a href="https://github.com/fluid-dev/hexo-theme-fluid/blob/master/Changelog.md" target="_blank" rel="nofollow noopener">
-            <div class="row" style="flex-wrap: nowrap">
-              
-                <img class="link-avatar my-auto" src="/img/favicon.png" srcset="/img/loading.gif" alt="Fluid Changelog" />
-              
-              <div class="link-text">
-                <div class="link-title">Fluid Changelog</div>
-                <div class="link-intro">主题更新日志</div>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  
-</div>
-
-              </div>
-            </div>
+            
           </div>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc-start"></div>
+<div id="toc">
+  <p class="h5"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+  <div id="tocbot"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
   </main>
 
@@ -289,6 +355,57 @@
 
 
 
+  
+  <script  src="https://cdn.staticfile.org/tocbot/4.10.0/tocbot.min.js" ></script>
+  <script>
+    $(document).ready(function () {
+      var navHeight = $('#navbar').height();
+      var post = $('#post');
+      var toc = $('#toc');
+      var tocLimMax = post.offset().top + post.height() - navHeight;
+
+      $(window).scroll(function () {
+        var tocLimMin = $('#toc-start').offset().top - navHeight;
+        var scroH = document.body.scrollTop + document.documentElement.scrollTop;
+
+        if (tocLimMin <= scroH && scroH <= tocLimMax) {
+          toc.css({
+            'display': 'block',
+            'position': 'fixed',
+            'top': navHeight,
+          });
+        } else if (scroH <= tocLimMin) {
+          toc.css({
+            'position': '',
+            'top': '',
+          });
+        } else if (scroH > tocLimMax) {
+          toc.css('display', 'none');
+        }
+      });
+      tocbot.init({
+        tocSelector: '#tocbot',
+        contentSelector: '.post-content',
+        headingSelector: 'h1,h2,h3,h4,h5,h6',
+        linkClass: 'tocbot-link',
+        activeLinkClass: 'tocbot-active-link',
+        listClass: 'tocbot-list',
+        isCollapsedClass: 'tocbot-is-collapsed',
+        collapsibleClass: 'tocbot-is-collapsible',
+        scrollSmooth: true,
+      });
+      if ($('.toc-list-item').length > 0) {
+        $('#toc > p').css('visibility', 'visible');
+      }
+      var offset = $('#board-ctn').css('margin-right')
+      $('#toc-ctn').css({
+        'right': offset
+      })
+    });
+  </script>
+
+
+
 
 
 
@@ -317,7 +434,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "友情链接&nbsp;",
+        "Hexo : 安装hexo-admin&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 100,

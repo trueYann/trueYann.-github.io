@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>Hexo : 安装hexo-admin</title>
+    <link href="/2020/03/12/Hexo-%E5%AE%89%E8%A3%85hexo-admin/"/>
+    <url>/2020/03/12/Hexo-%E5%AE%89%E8%A3%85hexo-admin/</url>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>搭起了hexo博客，第一件事当然是要写几篇博文。hexo可以通过命令创建博文，然后找到对应的markdown文档，写入博文的内容然后发布。这样子多少都有点显得不方便。一来，需要登到服务器；二来，直接在服务器编辑markdown文档不够直观。有没有更方便的方式，比如有个后台，可以登录到后台直接编辑博文然后发布？hexo-admin插件就是这样的一个角色。</p><hr><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul><li><p>安装hexo-admin</p><pre><code>cd blog   ##blog目录为Hexo的要目录npm install --save hexo-adminhexo s</code></pre><p><em>注：若 ”npm command not found” 可参考 <a href="https://blog.csdn.net/czjlghndcy/article/details/80313409" target="_blank" rel="noopener">此处</a></em></p></li><li><p>获取password_hash</p><pre><code>访问http://127.0.0.1:4000/admin</code></pre></li></ul><p><img src="/images/pasted-0.png" srcset="/img/loading.gif" alt="upload successful"></p><p>进入后，选择”setting”菜单，按图勾选两个复选框，点击”Setup authentification here”</p><p><img src="/images/pasted-1.png" srcset="/img/loading.gif" alt="upload successful"></p><p>填写username,password,seret等信息，获得password_hash<br><img src="/images/pasted-2.png" srcset="/img/loading.gif" alt="upload successful"></p><ul><li><p>同步到github脚本<br/><br>在写完博文发布(deploy)的时候，同时希望推送到github。我们可以写一个脚本，让deploy之后执行脚本，推送到github:</p><pre><code class="bash">$ cd blog$ mkdir admin_script$ touch admin_script/hexo-generate.sh</code></pre><p>用atom或sublime编辑hexo-generate.sh脚本，写上以下内容:</p><pre><code>#!/usr/bin/env shhexo clean &amp;&amp; hexo g &amp;&amp; hexo d</code></pre></li><li><p>配置hexo<br/><br>编辑hexo配置文档(_config.yml)，将步骤2所获得的信息添加到配置文档中。内容如下:</p><pre><code>admin:  username: trueyann  password_hash: (步骤2所得）  secret: hello trueyann!  deployCommand: &#39;./admin_script/hexo-generate.sh&#39;</code></pre></li><li><p>写博文<br/><br>访问 <a href="http://127.0.0.1:4000/admin" target="_blank" rel="noopener">http://127.0.0.1:4000/admin</a> ，用户名密码登录。然后在Posts菜单点击”New Posts”，创建一篇博文。</p><p><img src="/images/pasted-3.png" srcset="/img/loading.gif" alt="upload successful"></p><p>默认情况下，博文是以草稿(_drafts)的形式编写，如果编写完后要发布正文，将_drafts改为_posts即可。右上角设置按钮可以为博文添加分类和标签。如图:</p></li></ul><p><img src="/images/pasted-4.png" srcset="/img/loading.gif" alt="upload successful"></p><ul><li>发布博文<br/><br>按照步骤5将_drafts改为_posts后，点右上角的勾。然后，选中”Deploy”菜单，直接点击”deploy”。<br><img src="/images/pasted-5.png" srcset="/img/loading.gif" alt="upload successful"></li></ul><hr><p>&emsp;至此，一篇博文写好并发布了。同时，这篇博文也会同步到github上。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>学习</tag>
+      
+      <tag>工具配置</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2020/03/10/hello-world/"/>
     <url>/2020/03/10/hello-world/</url>
