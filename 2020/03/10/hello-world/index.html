@@ -259,6 +259,23 @@
   
 
   
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script  src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script>
+  const ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    autoplay: 'true' === 'true',
+    loop: 'all',
+    order: 'list',
+    preload: 'auto',
+    audio: [{"name":"蓝莲花","artist":"许巍","url":"http://www.170mv.com/kw/antiserver.kuwo.cn/anti.s?rid=MUSIC_203139&response=res&format=mp3|aac&type=convert_url&br=128kmp3&agent=iPhone&callback=getlink&jpcallback=getlink.mp3","cover":"/source/img/top_img.jpg"},{"name":"曾经的你","artist":"许巍","url":"http://www.170mv.com/kw/antiserver.kuwo.cn/anti.s?rid=MUSIC_27811465&response=res&format=mp3|aac&type=convert_url&br=128kmp3&agent=iPhone&callback=getlink&jpcallback=getlink.mp3","cover":"/source/img/top_img.jpg"},{"name":"爱的飞行日记","artist":"周杰伦/杨瑞代","url":"http://www.170mv.com/kw/antiserver.kuwo.cn/anti.s?rid=MUSIC_728668&response=res&format=mp3|aac&type=convert_url&br=128kmp3&agent=iPhone&callback=getlink&jpcallback=getlink.mp3","cover":"/source/img/top_img.jpg"}]
+  });
+</script>
+
+  
 
   
 
