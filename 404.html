@@ -177,6 +177,23 @@
   
 
   
+    <!-- APlayer 音乐播放器 -->
+    <div id="aplayer"></div>
+    <script  src="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js" ></script>
+<link  rel="stylesheet" href="https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css" />
+<script>
+  const ap = new APlayer({
+    container: document.getElementById('aplayer'),
+    fixed: true,
+    autoplay: 'true' === 'true',
+    loop: 'all',
+    order: 'list',
+    preload: 'auto',
+    audio: [{"name":"蓝莲花","artist":"许巍","url":"/source/songs/蓝莲花.mp3","cover":"/source/img/avatar.png"},{"name":"曾经的你","artist":"许巍","url":"/source/songs/曾经的你.mp3","cover":"/source/img/avatar.png"},{"name":"爱的飞行日记","artist":"周杰伦/杨瑞代","url":"/source/songs/爱的飞行日记.mp3","cover":"/source/img/avatar.png"}]
+  });
+</script>
+
+  
 
   
 
